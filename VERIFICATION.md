@@ -42,4 +42,14 @@ Kiểm tra sau thay đổi:
 
 **GitHub:** đã push mã nguồn lên `https://github.com/Xuanbac12/listenflow.git`, nhánh `main`; đã kiểm tra ref từ remote sau push. Các tệp `.env*.local` và `.local/` không được đưa lên Git.
 
-**Chưa public website:** chưa có backend Render/URL API. Hosting chưa deploy. Không bật Blaze và không chạy Cloud Functions trên cloud. Chưa kiểm tra toàn bộ luồng người dùng trên môi trường cloud. Hướng dẫn deploy và đường dẫn tạo Render Blueprint nằm trong `DEPLOY_FREE.md`.
+## Kết quả production — 2026-11-17
+
+- Render API `https://listenflow-api.onrender.com/api/health` trả HTTP 200 và `{"ok":true}`.
+- Frontend đã build với Firebase thật, `VITE_USE_EMULATORS=false` và URL API Render.
+- `npm run deploy:spark` hoàn thành: Hosting release thành công tại `https://listenflow-english-20261117.web.app`, Firestore Rules/indexes đã deploy. Không triển khai Cloud Functions hay bật Blaze.
+- Kiểm thử production đã tạo một tài khoản tạm bằng Firebase Email/Password thật, thêm nội dung qua API Render, bắt đầu phiên không chứa đáp án gốc, nộp câu thiếu một từ nhận 75%, kiểm tra lịch sử, bài sai và thống kê trong Firestore thật. Các kiểm tra đều đạt. Tài khoản và dữ liệu thử đã được xóa.
+- CORS preflight với origin Hosting đúng trả 204; API dữ liệu không có token trả 401.
+- Chrome headless mở trực tiếp `/practice` trên Hosting nhận HTTP 200 và hiển thị đăng nhập; Firebase Auth SDK gọi endpoint production. Không có yêu cầu đến localhost/emulator, không có lỗi JavaScript. Viewport 390px không tràn ngang.
+- Ảnh kiểm tra giao diện production lưu tại `test-results/production-login.png` (không đưa vào Git).
+
+Hướng dẫn vận hành và deploy lại nằm trong `DEPLOY_FREE.md`. Dữ liệu local emulator không được chuyển lên cloud.

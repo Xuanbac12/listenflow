@@ -1,5 +1,8 @@
 # ListenFlow — English Practice
 
+**Website đang chạy:** https://listenflow-english-20261117.web.app  
+**Backend:** https://listenflow-api.onrender.com/api/health
+
 Ứng dụng luyện viết và nhớ nội dung tiếng Anh. React + TypeScript + Vite + Tailwind CSS; Node.js Express TypeScript; Firebase Authentication và Cloud Firestore. Phương án deploy đang chọn là **Firebase Spark + Render Free**.
 
 **Hướng dẫn deploy miễn phí từng bước:** [DEPLOY_FREE.md](DEPLOY_FREE.md). `npm run deploy` mặc định dùng Spark/Render; không bật billing hay triển khai Cloud Functions.

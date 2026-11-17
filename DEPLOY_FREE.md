@@ -4,6 +4,14 @@ Phương án đã chọn: **Firebase Spark + Render Free**. Firebase giữ Authe
 
 Project đã tạo: `listenflow-english-20261117`.
 
+**Đã deploy ngày 17/11/2026:**
+
+- Website: https://listenflow-english-20261117.web.app
+- API: https://listenflow-api.onrender.com/api
+- Health check: https://listenflow-api.onrender.com/api/health
+
+Các bước bên dưới dùng để quản lý hoặc triển khai lại. Repository, backend Render và Firebase Hosting hiện đã được kết nối.
+
 - [Firebase Console](https://console.firebase.google.com/project/listenflow-english-20261117/overview)
 - Firestore: database `(default)`, Singapore `asia-southeast1`, free tier.
 - Email/Password và domain `listenflow-english-20261117.web.app` / `.firebaseapp.com` đã cấu hình.
@@ -70,7 +78,7 @@ Không thêm `FIREBASE_AUTH_EMULATOR_HOST` hoặc `FIRESTORE_EMULATOR_HOST` trê
 Tệp `.env.production.local` đã có cấu hình public Firebase thật. Chỉ cần điền URL Render thực tế:
 
 ```dotenv
-VITE_API_BASE_URL=https://TEN_DICH_VU.onrender.com/api
+VITE_API_BASE_URL=https://listenflow-api.onrender.com/api
 ```
 
 Giữ `VITE_USE_EMULATORS=false` trong tệp production. Tệp `.env.local` vẫn dùng emulator cho `npm run dev`.
@@ -84,7 +92,7 @@ npm run deploy:spark
 
 Lệnh này build lại và chỉ deploy **Hosting + Firestore Rules**, không deploy Functions. Predeploy sẽ từ chối nếu thiếu URL Render, đang bật emulator, build cũ hoặc health check backend thất bại.
 
-Sau khi Firebase báo deploy thành công, mở https://listenflow-english-20261117.web.app. URL này là địa chỉ dự kiến; chỉ có ứng dụng sau khi bước deploy Hosting hoàn tất.
+Website đã được deploy thành công tại https://listenflow-english-20261117.web.app.
 
 ## 5. Kiểm tra sau deploy
 
