@@ -1,0 +1,13 @@
+import { loadEnv } from 'vite';
+import { readFileSync } from 'node:fs';
+const env=loadEnv('production',process.cwd(),'VITE_');
+if(env.VITE_USE_EMULATORS!=='false')throw new Error('Set VITE_USE_EMULATORS=false in .env.production.local before deploying.');
+if(!env.VITE_FIREBASE_PROJECT_ID||env.VITE_FIREBASE_PROJECT_ID.startsWith('demo-'))throw new Error('Set a real Firebase project in .env.production.local.');
+const api=new URL(env.VITE_API_BASE_URL||'http://invalid');
+if(api.protocol!=='https:'||api.hostname==='invalid'||!api.pathname.endsWith('/api'))throw new Error('Set VITE_API_BASE_URL=https://YOUR_RENDER_SERVICE.onrender.com/api before deploying.');
+const build=JSON.parse(readFileSync('dist/.listenflow-build.json','utf8'));
+if(build.emulator||build.projectId!==env.VITE_FIREBASE_PROJECT_ID||build.apiBase!==env.VITE_API_BASE_URL)throw new Error('Build configuration is stale. Run npm run build again.');
+if(process.env.GCLOUD_PROJECT&&process.env.GCLOUD_PROJECT!==build.projectId)throw new Error('Hosting target does not match the Firebase project used for the build.');
+const response=await fetch(`${env.VITE_API_BASE_URL}/health`,{signal:AbortSignal.timeout(120000)});
+if(!response.ok||(await response.json()).ok!==true)throw new Error('Render API health check failed; deploy the backend first.');
+console.log('Spark deployment checks passed. No Cloud Functions will be deployed.');

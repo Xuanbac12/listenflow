@@ -1,0 +1,33 @@
+{
+  "name": "listenflow-api",
+  "private": true,
+  "version": "1.0.0",
+  "main": "lib/index.js",
+  "engines": {
+    "node": "22"
+  },
+  "overrides": {
+    "@firebase/database-compat": "2.1.7",
+    "@firebase/database": "1.1.5",
+    "@firebase/app": "0.16.2",
+    "@firebase/app-compat": "0.5.18",
+    "@grpc/grpc-js": "1.14.7"
+  },
+  "scripts": {
+    "start": "node lib/server.js",
+    "build": "tsc",
+    "test": "tsx --test test/*.test.ts"
+  },
+  "dependencies": {
+    "express": "^4.21.2",
+    "firebase-admin": "14.5.1",
+    "firebase-functions": "7.4.0",
+    "zod": "4.6.7"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^22.10.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.7.0"
+  }
+}

@@ -1,0 +1,17 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { grade } from '../src/grading';
+const options={ignoreCase:true,ignorePunctuation:true};
+test('exact and normalized match',()=>assert.equal(grade('Hello, world!','hello WORLD',options).score,100));
+test('strict case and punctuation',()=>assert.equal(grade('Hello!','hello',{ignoreCase:false,ignorePunctuation:false}).score,0));
+test('substitution',()=>{const r=grade('I like cats','I like dogs',options);assert.equal(r.score,67);assert.deepEqual(r.counts,{correct:2,incorrect:1,missing:0,extra:0});});
+test('missing word preserves subsequent matches',()=>{const r=grade('I really like green tea','I like green tea',options);assert.equal(r.counts.missing,1);assert.equal(r.counts.correct,4);assert.equal(r.score,80);});
+test('extra word preserves subsequent matches',()=>{const r=grade('I like tea','I really like tea',options);assert.equal(r.counts.extra,1);assert.equal(r.counts.correct,3);assert.equal(r.score,67);});
+test('empty answer',()=>{assert.equal(grade('one two','',options).counts.missing,2);assert.equal(grade('one two','',options).score,0);});
+test('repeated tokens',()=>{const r=grade('to be or not to be','to be to be',options);assert.equal(r.counts.missing,2);assert.equal(r.counts.correct,4);});
+test('score never negative',()=>assert.equal(grade('one','one two three four',options).score,0));
+test('unicode whitespace and punctuation',()=>assert.equal(grade('“It’s”\n useful.','its\tuseful',options).score,100));
+test('punctuation only and empty references',()=>{assert.equal(grade('hello','!!!',options).score,0);assert.equal(grade('','',options).score,100);assert.equal(grade('','extra',options).score,0);});
+test('independent options',()=>{assert.equal(grade('Hello!','Hello',{ignoreCase:false,ignorePunctuation:true}).score,100);assert.equal(grade('Hello!','hello!',{ignoreCase:true,ignorePunctuation:false}).score,100);});
+test('input limit',()=>assert.throws(()=>grade('word '.repeat(501),'word',options),/500/));
+test('alignment reconstructs both sequences',()=>{for(const [a,b] of [['a b c d','a c x d e'],['x x y','x y y'],['a b','b a']]){const r=grade(a,b,options);assert.equal(r.alignment.flatMap(w=>w.expected?[w.expected]:[]).join(' '),a);assert.equal(r.alignment.flatMap(w=>w.actual?[w.actual]:[]).join(' '),b);}});

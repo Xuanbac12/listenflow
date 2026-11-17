@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: listenflow-api
+    runtime: node
+    plan: free
+    region: singapore
+    rootDir: functions
+    buildCommand: npm ci --include=dev && npm run build
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_VERSION
+        value: 22.22.0
+      - key: NODE_ENV
+        value: production
+      - key: FIREBASE_PROJECT_ID
+        value: listenflow-english-20261117
+      - key: ALLOWED_ORIGINS
+        value: https://listenflow-english-20261117.web.app,https://listenflow-english-20261117.firebaseapp.com
+      - key: FIREBASE_SERVICE_ACCOUNT_JSON
+        sync: false

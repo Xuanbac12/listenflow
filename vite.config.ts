@@ -1,0 +1,3 @@
+import { defineConfig, loadEnv } from 'vite';
+import react from '@vitejs/plugin-react';
+export default defineConfig(({mode})=>{const env=loadEnv(mode,process.cwd(),'VITE_');return { plugins: [react(),{name:'listenflow-build-metadata',generateBundle(){this.emitFile({type:'asset',fileName:'.listenflow-build.json',source:JSON.stringify({emulator:env.VITE_USE_EMULATORS==='true',projectId:env.VITE_FIREBASE_PROJECT_ID??'',apiBase:env.VITE_API_BASE_URL??'/api'})});}}], build:{rollupOptions:{output:{manualChunks:{firebase:['firebase/app','firebase/auth'],react:['react','react-dom','react-router-dom']}}}}, server: { proxy: { '/api': { target: 'http://127.0.0.1:5001', rewrite: path => `/demo-listenflow/asia-southeast1/api${path}` } } } };});
