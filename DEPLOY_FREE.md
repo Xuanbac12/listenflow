@@ -9,22 +9,22 @@ Project đã tạo: `listenflow-english-20261117`.
 - Email/Password và domain `listenflow-english-20261117.web.app` / `.firebaseapp.com` đã cấu hình.
 - Firestore Rules chặn truy cập trực tiếp từ frontend đã được deploy.
 
-## 1. Tạo tài khoản và repository GitHub
+## 1. Repository GitHub — đã hoàn thành
 
-1. Mở https://github.com/signup, tạo tài khoản và xác minh email.
-2. Mở https://github.com/new.
-3. Repository name: `listenflow`. Chọn **Private**.
-4. Chưa chọn tạo README, `.gitignore` hoặc license vì dự án đã có mã nguồn.
-5. Bấm **Create repository**, sao chép URL dạng `https://github.com/TEN_CUA_BAN/listenflow` và gửi URL đó cho tôi để tiếp tục đưa mã nguồn lên.
+Mã nguồn đã được push lên nhánh `main` của [Xuanbac12/listenflow](https://github.com/Xuanbac12/listenflow). Remote `origin` đã cấu hình và nhánh local theo dõi `origin/main`.
 
 Repository Git riêng đã được khởi tạo trong thư mục dự án. Không chạy `git add` ở thư mục người dùng hoặc Desktop. Những tệp `.env*.local`, `.local/`, khóa Firebase, `node_modules/` và `dist/` phải được giữ ngoài Git. Không chỉnh trực tiếp `dist/index.html`; Vite tạo lại tệp này khi build.
 
 ## 2. Tạo tài khoản Render
 
+**Cách nhanh:** mở [Deploy ListenFlow to Render](https://render.com/deploy?repo=https://github.com/Xuanbac12/listenflow). Đăng nhập bằng GitHub và cho phép Render truy cập repository này nếu được yêu cầu. Render đọc `render.yaml` để điền các trường và chọn `plan: free`. Điền bí mật `FIREBASE_SERVICE_ACCOUNT_JSON` theo bước 3 bên dưới, kiểm tra gói Free, rồi tạo Blueprint. Khi dùng cách này, không tạo thêm Web Service thủ công để tránh trùng dịch vụ.
+
+**Cách thủ công nếu không dùng Blueprint:**
+
 1. Mở https://dashboard.render.com/register.
 2. Chọn đăng nhập bằng GitHub, xác minh tài khoản nếu Render yêu cầu.
 3. Khi kết nối repository, chỉ cấp quyền cho repository `listenflow` nếu có lựa chọn **Only select repositories**.
-4. Chọn **New → Web Service**, kết nối repository `listenflow` sau khi đã push mã nguồn.
+4. Chọn **New → Web Service**, kết nối repository `Xuanbac12/listenflow`.
 
 Điền các trường sau:
 

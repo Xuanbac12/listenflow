@@ -4,6 +4,8 @@
 
 **Hướng dẫn deploy miễn phí từng bước:** [DEPLOY_FREE.md](DEPLOY_FREE.md). `npm run deploy` mặc định dùng Spark/Render; không bật billing hay triển khai Cloud Functions.
 
+[Tạo backend Render từ repository này](https://render.com/deploy?repo=https://github.com/Xuanbac12/listenflow) — cấu hình `render.yaml` đã chọn gói Free. Đăng nhập Render bằng GitHub, cấp quyền cho repository và điền `FIREBASE_SERVICE_ACCOUNT_JSON` theo hướng dẫn trước khi deploy.
+
 ## Chức năng
 
 - Dashboard, Vocabulary, Sentences, Paragraphs, Add/Edit Content, Practice, Review Mistakes, History, Statistics, Settings.

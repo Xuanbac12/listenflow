@@ -40,4 +40,6 @@ Kiểm tra sau thay đổi:
 - `npm run test:standalone`: đạt; Express chạy bằng `node functions/lib/server.js`, kiểm tra preflight/CORS và toàn bộ assertions API với Auth/Firestore emulators. Script bên trong emulator thoát code 0.
 - Đã xác nhận các tệp cấu hình local và thư mục `.local/` được Git bỏ qua.
 
-**Chưa public website:** chưa có repository GitHub từ người dùng và chưa có backend Render/URL API. Hosting chưa deploy. Không bật Blaze và không chạy Cloud Functions trên cloud. Chưa kiểm tra toàn bộ luồng người dùng trên môi trường cloud. Hướng dẫn chi tiết và các bước tạo tài khoản nằm trong `DEPLOY_FREE.md`.
+**GitHub:** đã push mã nguồn lên `https://github.com/Xuanbac12/listenflow.git`, nhánh `main`; đã kiểm tra ref từ remote sau push. Các tệp `.env*.local` và `.local/` không được đưa lên Git.
+
+**Chưa public website:** chưa có backend Render/URL API. Hosting chưa deploy. Không bật Blaze và không chạy Cloud Functions trên cloud. Chưa kiểm tra toàn bộ luồng người dùng trên môi trường cloud. Hướng dẫn deploy và đường dẫn tạo Render Blueprint nằm trong `DEPLOY_FREE.md`.
